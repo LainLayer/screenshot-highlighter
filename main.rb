@@ -12,8 +12,7 @@ BLUE  = Gosu::Color.argb(0xff_0000ff)
 PADDING   = 4
 THICKNESS = 3
 
-# removing the :text breaks it for some reason, i dont know why
-Element = Struct.new(:text, :x1, :y1, :x2, :y2) do
+Element = Struct.new(:x1, :y1, :x2, :y2) do
 	def draw(c=RED)
 		Gosu.draw_rect(
 			x1-THICKNESS,
@@ -84,7 +83,6 @@ words = []
 
 data.each do |word|
 	words << Element.new(
-		word[:word],
 		word[:x_start]-4,
 		word[:y_start]-4,
 		word[:x_end]+4,
@@ -119,7 +117,7 @@ class Screenshot < Gosu::Window
 					min_y1 = @group.map { |g| g = g.y1 }.min
 					max_y2 = @group.map { |g| g = g.y2 }.max
 									
-					@gelem = Element.new('unselected', min_x1, min_y1, max_x2, max_y2)
+					@gelem = Element.new(min_x1, min_y1, max_x2, max_y2)
 				end
 				
 			when Gosu::KbReturn
@@ -179,14 +177,14 @@ class Screenshot < Gosu::Window
 					end
 				end
 			when Gosu::KbR
-				e = Element.new('lol', mouse_x, mouse_y, mouse_x+1, mouse_y+1)
+				e = Element.new(mouse_x, mouse_y, mouse_x+1, mouse_y+1)
 				@group << e
 				min_x1 = @group.map { |g| g = g.x1 }.min
 				max_x2 = @group.map { |g| g = g.x2 }.max
 				min_y1 = @group.map { |g| g = g.y1 }.min
 				max_y2 = @group.map { |g| g = g.y2 }.max
 									
-				@gelem = Element.new('unselected', min_x1, min_y1, max_x2, max_y2)
+				@gelem = Element.new(min_x1, min_y1, max_x2, max_y2)
 				
 		end
 	end
