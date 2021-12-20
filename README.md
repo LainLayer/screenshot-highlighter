@@ -50,7 +50,11 @@ Then press `C` on another red square
 
 ## delete selection
 
-Hover on the red square and press `O`
+Hover on the red square and press `X`
+
+## delete everything
+
+Press `O`
 
 ## expand selection
 
